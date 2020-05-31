@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
-@RequestMapping
+@RequestMapping("/products")
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
@@ -40,7 +40,7 @@ public class ProductController {
         ResourceUriHelper.addUriResponseHeader(product);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ProductDtoResponse update(@PathVariable("id")final Long id, @RequestBody ProductDtoRequest dto) {
         return Optional.of(service.update(id, request.toDomain(dto)))
                 .map(p -> response.toDto(p)).get();

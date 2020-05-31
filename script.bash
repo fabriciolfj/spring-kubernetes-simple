@@ -21,4 +21,4 @@ docker build -t fabricio211/product-service .
 
 minikube addons enable ingress
 
-kubectl apply -f kubernetes/ingress.yml 
+kubectl apply -f kubernetes/ingress.yml

@@ -1,5 +1,5 @@
 
-from openjdk:11.0.7-jdk
+FROM openjdk:11.0.7-jdk
 
 LABEL maintainer = "fabricio.jacob@outlook.com"
 

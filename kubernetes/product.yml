@@ -55,7 +55,6 @@ spec:
           configMap:
             name: config-repo-product
 
-
 ---
 apiVersion: v1
 kind: Service

@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: products
-          image: fabricio211/product-service
-          imagePullPolicy: Never
+          image: fabricio211/product-service:latest
+          imagePullPolicy: Always
           env:
             - name: SPRING_CONFIG_LOCATION
               value: file:/config-repo/product.yml
@@ -33,7 +33,7 @@ spec:
               path: /actuator/info
               port: 8080
             initialDelaySeconds: 10
-            periodSeconds: 10
+            periodSeconds: 40
             timeoutSeconds: 2
             failureThreshold: 30
             successThreshold: 1

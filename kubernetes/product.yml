@@ -17,6 +17,11 @@ spec:
           image: fabricio211/product-service:latest
           imagePullPolicy: Always
           env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: MYSQL_ROOT_PASSWORD
+                  name: mysql-server-credentials
             - name: SPRING_CONFIG_LOCATION
               value: file:/config-repo/product.yml
           envFrom:

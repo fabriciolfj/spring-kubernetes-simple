@@ -16,9 +16,11 @@ kubectl create secret generic mysql-server-credentials \
 kubectl create configmap config-repo-product --from-file=config-repo/product.yml --save-config
 kubectl apply -f kubernetes/mysql.yaml
 
-docker build -t fabricio211/product-service .
+#docker build -t fabricio211/product-service .
 kubectl apply -f kubernetes/product.yml
 
-minikube addons enable ingress
+microk8s.enable ingress
+
+microk8s enable dns
 
 kubectl apply -f kubernetes/ingress.yml

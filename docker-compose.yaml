@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  mysql:
+    networks:
+      - my-network
+    image: mysql:5.7.21
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_DATABASE: "product"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    ports:
+      - 3306:3306
+networks:
+  my-network:
+    name: my-network

@@ -13,3 +13,7 @@ spec:
             backend:
               serviceName: products
               servicePort: 8080
+          - path: /swagger-ui/**
+            backend:
+              serviceName: products
+              servicePort: 8080

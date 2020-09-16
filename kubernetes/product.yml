@@ -66,6 +66,7 @@ kind: Service
 metadata:
   name: products
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8080

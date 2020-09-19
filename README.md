@@ -6,5 +6,6 @@
 - O arquivo script.bash, possui os passos para subir a aplicação.
 - Versão mais recente do spring, ja da suporte para geração de imagens docker:
 ```
+Spring Boot 2.3 oferece suporte para camadas, extraindo partes do JAR de gordura em camadas separadas. O recurso de camadas é desativado por padrão e precisa ser explicitamente ativado com o plugin Spring Boot Maven:
 mvn spring-boot:build-image
 ```

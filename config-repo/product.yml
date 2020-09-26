@@ -16,3 +16,17 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57Dialect
     show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true

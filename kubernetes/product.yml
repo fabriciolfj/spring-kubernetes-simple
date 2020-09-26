@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-products-svc
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,9 +17,10 @@ spec:
       labels:
         app: products
     spec:
+      serviceAccountName: sa-products-svc
       containers:
         - name: products
-          image: fabricio211/product-service:latest
+          image: fabricio211/product-service:4.0
           imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_PASSWORD
@@ -31,7 +37,11 @@ spec:
             - containerPort: 8080
           resources:
             limits:
-              memory: 350Mi
+              memory: 300Mi
+              cpu: "300m"
+            requests:
+              memory: 300Mi
+              cpu: "300m"
           livenessProbe:
             httpGet:
               scheme: HTTP

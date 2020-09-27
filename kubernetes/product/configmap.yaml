@@ -1,0 +1,39 @@
+#não usar, vamos usar o secret
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-product
+data:
+  application.yml: |-
+                  spring:
+                    application:
+                      name: product
+                    datasource:
+                      url: jdbc:mysql://mysql/product?createDatabaseIfNotExist=true
+                      username: root
+                      password: ${MYSQL_ROOT_PASSWORD}
+                    flyway:
+                      locations:
+                        - classpath:db/migration
+                        - classpath:db/testdata
+                    jpa:
+                      hibernate:
+                        ddl-auto: 'update'
+                      properties:
+                        hibernate:
+                          dialect: org.hibernate.dialect.MySQL57Dialect
+                      show-sql: true
+                    management:
+                    endpoints:
+                      web:
+                        exposure:
+                          include: "*"
+                    metrics:
+                      export:
+                        prometheus:
+                          enabled: true
+                    endpoint:
+                      metrics:
+                        enabled: false
+                      prometheus:
+                        enabled: true

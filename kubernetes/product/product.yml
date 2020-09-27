@@ -29,7 +29,7 @@ spec:
                   key: MYSQL_ROOT_PASSWORD
                   name: mysql-server-credentials
             - name: SPRING_CONFIG_LOCATION
-              value: file:/config-repo/product.yml
+              value: file:/etc/config/application.yml
           envFrom:
             - secretRef:
                 name: mysql-server-credentials
@@ -63,13 +63,15 @@ spec:
             failureThreshold: 3
             successThreshold: 1
           volumeMounts:
-            - name: config-repo-volume
-              mountPath: /config-repo
+            - mountPath: /etc/config
+              name: config-products
       volumes:
-        - name: config-repo-volume
+        - name: config-products
           configMap:
-            name: config-repo-product
-
+            name: config-product
+            items:
+              - key: application.yml
+                path: application.yml
 ---
 apiVersion: v1
 kind: Service

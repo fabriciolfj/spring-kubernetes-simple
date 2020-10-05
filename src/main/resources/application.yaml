@@ -1,4 +1,10 @@
 spring:
+  cloud:
+    kubernetes:
+      reload:
+        enable: true
+      secrets:
+        name: mysql-server-credentials
   application:
     name: product
   datasource:

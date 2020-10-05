@@ -31,7 +31,7 @@ spec:
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
-            claimName: spvmysql
+            claimName: mysqlpvc
 ---
 apiVersion: v1
 kind: Service

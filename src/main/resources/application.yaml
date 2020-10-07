@@ -8,9 +8,9 @@ spring:
   application:
     name: product
   datasource:
-    url: jdbc:mysql://mysql/product
-    username: root
-    password: root
+    url: jdbc:mysql://localhost:3306/product
+    #username: root
+    #password: root
   flyway:
     locations:
       - classpath:db/migration

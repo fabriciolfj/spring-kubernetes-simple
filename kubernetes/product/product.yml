@@ -14,13 +14,15 @@ spec:
       app: products
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
       labels:
         app: products
     spec:
       serviceAccountName: sa-products-svc
       containers:
         - name: products
-          image: fabricio211/product-service:10.0
+          image: fabricio211/product-service:7.1
           imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_PASSWORD

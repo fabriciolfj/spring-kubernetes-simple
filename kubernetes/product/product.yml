@@ -22,7 +22,7 @@ spec:
       serviceAccountName: sa-products-svc
       containers:
         - name: products
-          image: fabricio211/product-service:7.1
+          image: fabricio211/product-service:12
           imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_PASSWORD
@@ -30,8 +30,8 @@ spec:
                 secretKeyRef:
                   key: MYSQL_ROOT_PASSWORD
                   name: mysql-server-credentials
-        #    - name: SPRING_CONFIG_LOCATION
-        #      value: file:/etc/config/application.yml
+            - name: SPRING_CONFIG_LOCATION
+              value: file:/etc/config/application.yml
           envFrom:
             - secretRef:
                 name: mysql-server-credentials
@@ -64,16 +64,16 @@ spec:
             timeoutSeconds: 2
             failureThreshold: 3
             successThreshold: 1
-     #     volumeMounts:
-     #       - mountPath: /etc/config
-     #         name: config-products
-      #volumes:
-      #  - name: config-products
-      #    configMap:
-      #      name: config-product
-      #      items:
-      #        - key: application.yml
-      #          path: application.yml
+          volumeMounts:
+            - mountPath: /etc/config
+              name: config-products
+      volumes:
+        - name: config-products
+          configMap:
+            name: config-product
+            items:
+              - key: application.yml
+                path: application.yml
 ---
 apiVersion: v1
 kind: Service

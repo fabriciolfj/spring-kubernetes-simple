@@ -1,17 +1,6 @@
 version: '2.1'
 
 services:
-  app:
-    networks:
-      - my-network
-    image: fabricio211/product-service:7.1
-    ports:
-    - 8080:8080
-    volumes:
-    - .:/code
-    depends_on:
-      mysql:
-        condition: service_healthy
 
   mysql:
     networks:

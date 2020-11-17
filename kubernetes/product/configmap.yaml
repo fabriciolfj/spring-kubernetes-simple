@@ -9,9 +9,9 @@ data:
                     application:
                       name: product
                     datasource:
-                      url: jdbc:mysql://mysql/product?createDatabaseIfNotExist=true
+                      url: jdbc:mysql://192.168.0.116:3306/product?createDatabaseIfNotExist=true
                       username: root
-                      password: ${MYSQL_ROOT_PASSWORD}
+                      password: root
                     flyway:
                       locations:
                         - classpath:db/migration

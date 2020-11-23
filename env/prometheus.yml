@@ -10,7 +10,7 @@ global:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
+  - job_name: 'Prometheus'
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
@@ -18,13 +18,10 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name:       'spring-boot-app'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
+  - job_name: 'spring-boot-app'
     scrape_interval: 5s
-    
+    scheme: http
     metrics_path: /actuator/prometheus
-
     static_configs:
       - targets: ['app:8080']
 

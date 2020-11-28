@@ -17,10 +17,9 @@ spec:
       labels:
         app: products
     spec:
-      serviceAccountName: sa-products-svc
       containers:
         - name: products
-          image: fabricio211/product-service:4.2
+          image: fabricio211/product-service
           imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_PASSWORD
@@ -45,21 +44,21 @@ spec:
           livenessProbe:
             httpGet:
               scheme: HTTP
-              path: /actuator/info
+              path: /actuator/health
               port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 40
-            timeoutSeconds: 2
-            failureThreshold: 30
+            initialDelaySeconds: 100
+            periodSeconds: 140
+            timeoutSeconds: 220
+            failureThreshold: 300
             successThreshold: 1
           readinessProbe:
             httpGet:
               scheme: HTTP
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            timeoutSeconds: 2
+            initialDelaySeconds: 100
+            periodSeconds: 110
+            timeoutSeconds: 200
             failureThreshold: 3
             successThreshold: 1
           volumeMounts:

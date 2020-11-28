@@ -1,8 +1,20 @@
-apiVersion: skaffold/v2alpha1
+apiVersion: skaffold/v2beta10
 kind: Config
+metadata:
+  name: spring-kubernetes-simple
 build:
   artifacts:
-    - image: fabricio211/product
-        jib: {}
-  tagPolicy:
-    gitCommit: {}
+  - image: fabricio211/product-service
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/ingress.yml
+    - k8s/mysql/mysql-pv.yaml
+    - k8s/mysql/mysql-pvc.yaml
+    - k8s/mysql/mysql-secret.yaml
+    - k8s/mysql/mysql.yaml
+    - k8s/product/configmap.yaml
+    - k8s/product/hpa.yaml
+    - k8s/product/product.yml

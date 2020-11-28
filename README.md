@@ -14,6 +14,7 @@ mvn spring-boot:build-image
 É uma ferramenta simples com base na linha de comando, capaz de lidar com o fluxo de construção da sua aplicação, em um ambiente kubernetes. Os manifestos do kubernetes, devem ficar na pasta k8s.
 
 ```
+skaffold init
 skaffold dev --port-forward --trigger=manual --no-prune
 ```
 

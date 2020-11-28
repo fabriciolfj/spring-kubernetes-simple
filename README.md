@@ -22,3 +22,11 @@ O comando acima implanta sua apliação dentro do kubernetes, no contexto seleci
 
 ##### Jib
 Nos auxilia na construção da imagem de aplicações java.
+
+
+##### Observabilidade
+Compreende os pontos abaixo:
+- monitoramento
+- logs
+- rastreamento
+- alerta

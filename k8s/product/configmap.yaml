@@ -24,14 +24,17 @@ data:
                           dialect: org.hibernate.dialect.MySQL57Dialect
                       show-sql: true
                     management:
-                    endpoints:
-                      web:
-                        exposure:
-                          include: "*"
-                    metrics:
-                      export:
-                        prometheus:
-                          enabled: true
+                      endpoints:
+                        health.show-details: always
+                        web:
+                          exposure:
+                            include: "*"
+                      metrics:
+                        tags:
+                          application: demoSpring
+                        export:
+                          prometheus:
+                            enabled: true
                     endpoint:
                       metrics:
                         enabled: false

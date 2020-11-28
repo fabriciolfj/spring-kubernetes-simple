@@ -2,7 +2,7 @@ spring:
   application:
     name: product
   datasource:
-    url: jdbc:mysql://localhost:3306/product
+    url: jdbc:mysql://mysql:3306/product
     username: root
     password: root
   flyway:
@@ -22,10 +22,14 @@ management:
       exposure:
         include: "*"
   metrics:
+    tags:
+      application: springDemo
     export:
       prometheus:
         enabled: true
   endpoint:
+    health:
+      show-details: always
     metrics:
       enabled: false
     prometheus:

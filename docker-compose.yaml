@@ -4,7 +4,7 @@ services:
   app:
     networks:
       - my-network
-    image: fabricio211/product-service:7.1
+    image: fabricio211/product-service:30.2
     ports:
     - 8080:8080
     volumes:
@@ -39,15 +39,15 @@ services:
       - ./env/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
-  grafana:
+  grafana: #tem que colocar http://prometheus:9090 na configuracao
     networks:
       - my-network
-    image: grafana/grafana
+    image: grafana/grafana:7.3.3
     container_name: grafana
     ports:
-      - 3000:3000
-    env_file:
-      - ./env/grafana.env
+      - "3000:3000"
+    depends_on:
+      - prometheus
 networks:
   my-network:
     name: my-network

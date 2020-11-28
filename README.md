@@ -9,3 +9,6 @@
 Spring Boot 2.3 oferece suporte para camadas, extraindo partes do JAR de gordura em camadas separadas. O recurso de camadas é desativado por padrão e precisa ser explicitamente ativado com o plugin Spring Boot Maven:
 mvn spring-boot:build-image
 ```
+
+##### Skaffold
+É uma ferramenta simples com base na linha de comando, capaz de lidar com o fluxo de construção da sua aplicação, em um ambiente kubernetes.

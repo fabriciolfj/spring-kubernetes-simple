@@ -30,3 +30,6 @@ Compreende os pontos abaixo:
 - logs
 - rastreamento
 - alerta
+
+##### Micrometer
+Para monitorar uma aplicação spring boot, este é um exportador de métricas muito utilizado. Ele expõe dados num formato onde, por exemplo, prometheus consegui coletar.

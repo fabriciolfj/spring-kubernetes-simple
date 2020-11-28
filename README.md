@@ -11,7 +11,13 @@ mvn spring-boot:build-image
 ```
 
 ##### Skaffold
-É uma ferramenta simples com base na linha de comando, capaz de lidar com o fluxo de construção da sua aplicação, em um ambiente kubernetes.
+É uma ferramenta simples com base na linha de comando, capaz de lidar com o fluxo de construção da sua aplicação, em um ambiente kubernetes. Os manifestos do kubernetes, devem ficar na pasta k8s.
+
+```
+skaffold dev --port-forward --trigger=manual --no-prune
+```
+
+O comando acima implanta sua apliação dentro do kubernetes, no contexto selecionado.
 
 ##### Jib
 Nos auxilia na construção da imagem de aplicações java.

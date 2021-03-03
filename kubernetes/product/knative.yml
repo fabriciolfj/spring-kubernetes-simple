@@ -1,0 +1,20 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    autoscaling.knative.dev/target: "20"
+    autoscaling.knative.dev/metric: "rps"
+  name: product
+spec:
+  template:
+    spec:
+      traffic:
+        - latestRevision: true
+          percent: 60
+          revisionName: product-vlskg
+        - latestRevision: false
+          percent: 20
+          revisionName: product-t9zrd
+        - latestRevision: false
+          percent: 20
+          revisionName: product-9xhbw

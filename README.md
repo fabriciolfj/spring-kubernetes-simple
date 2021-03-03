@@ -41,4 +41,9 @@ Para monitorar uma aplicação spring boot, este é um exportador de métricas m
 
 ##### Funcionamento knative
 - Podemos escolher entre dois tipos de autoscaling: concorrência ou pediso por segundo (rps).
--  autoscaling.knative.dev/target.
+- autoscaling.knative.dev/target.
+- exemplo para testar muitas requisições:
+
+```
+siege http://10.238.177.98:31298/products -i -v -r 1000 -c 150 --no-parser
+```

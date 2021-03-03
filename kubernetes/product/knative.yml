@@ -8,13 +8,11 @@ metadata:
 spec:
   template:
     spec:
-      traffic:
-        - latestRevision: true
-          percent: 60
-          revisionName: product-vlskg
-        - latestRevision: false
-          percent: 20
-          revisionName: product-t9zrd
-        - latestRevision: false
-          percent: 20
-          revisionName: product-9xhbw
+      containers:
+        - image: fabricio211/product-service:4.2
+          livenessProbe:
+            httpGet:
+              path: /actuator/info
+          readinessProbe:
+            httpGet:
+              path: /actuator/info

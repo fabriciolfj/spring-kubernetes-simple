@@ -1,6 +1,15 @@
 version: '2.1'
 
 services:
+
+  consul:
+    networks:
+      - my-network
+    image: consul:latest
+    ports:
+    - 8500:8500
+    - 8600:8500
+
   app:
     networks:
       - my-network
@@ -39,6 +48,7 @@ services:
       - ./env/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
+
   grafana:
     networks:
       - my-network
@@ -48,6 +58,7 @@ services:
       - 3000:3000
     env_file:
       - ./env/grafana.env
+
 networks:
   my-network:
     name: my-network

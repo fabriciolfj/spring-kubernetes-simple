@@ -9,6 +9,14 @@ spring:
     locations:
       - classpath:db/migration
       - classpath:db/testdata
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${random.value}
+        health-check-path: /actuator/health
+        health-check-interval: 20s
+      host: localhost
+      port: 8500
   jpa:
     hibernate:
       ddl-auto: none
@@ -30,3 +38,6 @@ management:
       enabled: false
     prometheus:
       enabled: true
+
+server:
+  port: 8081

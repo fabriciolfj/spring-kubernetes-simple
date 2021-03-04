@@ -47,3 +47,7 @@ Para monitorar uma aplicação spring boot, este é um exportador de métricas m
 ```
 siege http://10.238.177.98:31298/products -i -v -r 1000 -c 150 --no-parser
 ```
+
+### Consul
+- na branch consul, utilizamos o mesmo para o papel de service discovery
+- para colocar propriedades ou configurações, segue o padrão: config/nome do app/valor, profile

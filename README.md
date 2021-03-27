@@ -40,7 +40,7 @@ Para monitorar uma aplicação spring boot, este é um exportador de métricas m
 - Todas essas caracteŕisticas são fornecedidas pelo componente chamado knative serving.
 
 ##### Funcionamento knative
-- Podemos escolher entre dois tipos de autoscaling: concorrência ou pediso por segundo (rps).
+- Podemos escolher entre dois tipos de autoscaling: concorrência ou pedidos por segundo (rps).
 - autoscaling.knative.dev/target.
 - exemplo para testar muitas requisições:
 

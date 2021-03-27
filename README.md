@@ -35,7 +35,7 @@ Compreende os pontos abaixo:
 Para monitorar uma aplicação spring boot, este é um exportador de métricas muito utilizado. Ele expõe dados num formato onde, por exemplo, prometheus consegui coletar.
 
 #### Knative
-- Knative introduz um nova forma de gerir as suas aplicações em kubernetes, adicionando novas características chave. Uma das mais significativas é a escala a zeo ou seja, caso knative detecta um serviço que não esteja sendo utilizado, reduz o número de instâncias em execução para zero.
+- Knative introduz um nova forma de gerir as suas aplicações em kubernetes, adicionando novas características chave. Uma das mais significativas é a escala a zero ou seja, caso knative detecta um serviço que não esteja sendo utilizado, reduz o número de instâncias em execução para zero.
 - Consequentemente, fornece uma funcionalidade de autoescalonamento integrada com base em concorrência ou número de pedidos por segundo.
 - Todas essas caracteŕisticas são fornecedidas pelo componente chamado knative serving.
 

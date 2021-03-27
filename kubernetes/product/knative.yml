@@ -1,17 +1,24 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  annotations:
-    autoscaling.knative.dev/target: "20"
-    autoscaling.knative.dev/metric: "rps"
   name: products
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/target: "20"
+        autoscaling.knative.dev/metric: "rps"
     spec:
       serviceAccountName: sa-products-svc
       containers:
         - name: products
           image: fabricio211/product-service:4.2
+          livenessProbe:
+            httpGet:
+              path: /actuator/info
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
           imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_PASSWORD
@@ -33,26 +40,6 @@ spec:
             requests:
               memory: 700Mi
               cpu: "300m"
-          livenessProbe:
-            httpGet:
-              scheme: HTTP
-              path: /actuator/info
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 40
-            timeoutSeconds: 2
-            failureThreshold: 30
-            successThreshold: 1
-          readinessProbe:
-            httpGet:
-              scheme: HTTP
-              path: /actuator/health
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            timeoutSeconds: 2
-            failureThreshold: 3
-            successThreshold: 1
           volumeMounts:
             - mountPath: /etc/config
               name: config-products

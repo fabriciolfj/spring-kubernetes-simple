@@ -11,8 +11,7 @@ spec:
     spec:
       serviceAccountName: sa-products-svc
       containers:
-        - name: products
-          image: fabricio211/product-service:4.2
+        - image: fabricio211/product-service:4.2
           livenessProbe:
             httpGet:
               path: /actuator/info

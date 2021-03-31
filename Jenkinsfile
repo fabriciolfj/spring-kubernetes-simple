@@ -26,7 +26,7 @@ node {
 
     stage("SSH Into k8s Server") {
         stage('Deploy spring boot') {
-          sshCommand remote: remote, command: "kubectl apply -f ./ -R"
+          sshCommand command: "kubectl apply -f ./ -R"
         }
     }
 }

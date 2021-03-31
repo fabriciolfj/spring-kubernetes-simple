@@ -16,6 +16,12 @@ node {
         sh 'docker build -t fabricio211/product-service:3.0.0 .'
     }
 
+    stage("Docker Login"){
+        withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
+            sh 'docker login -u fabricio211 -p megatron12'
+        }
+    }
+
     stage("Push Image to Docker Hub"){
         sh 'docker push  fabricio211/product-service:3.0.0'
     }

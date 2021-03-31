@@ -17,9 +17,7 @@ node {
     }
 
     stage("Docker Login"){
-        withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-            sh 'docker login -u fabricio211 -p megatron12'
-        }
+        sh 'docker login -u fabricio211 -p megatron12'
     }
 
     stage("Push Image to Docker Hub"){

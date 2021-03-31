@@ -24,9 +24,9 @@ node {
         sh 'docker push  fabricio211/product-service:3.0.0'
     }
 
-    stage("SSH Into k8s Server") {
-        withKubeConfig([serverUrl: 'https://192.168.49.2:8443']) {
-          ssh  "kubectl apply -f ./ -R"
+        stage("SSH Into k8s Server") {
+            withKubeConfig([credentialsId: 'spark', serverUrl: 'https://192.168.49.2:8443']) {
+              ssh  "kubectl apply -f ./ -R"
+            }
         }
-    }
 }

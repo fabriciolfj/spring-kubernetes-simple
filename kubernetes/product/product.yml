@@ -1,14 +1,9 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: sa-products-svc
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: products
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: products
@@ -17,30 +12,21 @@ spec:
       labels:
         app: products
     spec:
-      serviceAccountName: sa-products-svc
       containers:
         - name: products
-          image: fabricio211/product-service:4.2
+          image: 333000609522.dkr.ecr.us-east-2.amazonaws.com/fabricio211/product:2.0.0
           imagePullPolicy: Always
           env:
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: MYSQL_ROOT_PASSWORD
-                  name: mysql-server-credentials
             - name: SPRING_CONFIG_LOCATION
               value: file:/etc/config/application.yml
-          envFrom:
-            - secretRef:
-                name: mysql-server-credentials
           ports:
             - containerPort: 8080
           resources:
             limits:
-              memory: 700Mi
+              memory: 1000Mi
               cpu: "300m"
             requests:
-              memory: 700Mi
+              memory: 1000Mi
               cpu: "300m"
           livenessProbe:
             httpGet:

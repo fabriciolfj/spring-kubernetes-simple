@@ -1,0 +1,50 @@
+Comandos:
+
+chmod 400 <key>.pem
+copiar arquivos para a ec2: scp -r -i elk.pem /home/spark/Documentos/repositorios/Spring-Microservices-in-Action/AWS ec2-user@ec2-3-136-158-142.us-east-2.compute.amazonaws.com:~/
+conectar: ssh -i elk.pem ec2-user@ec2-3-136-158-142.us-east-2.compute.amazonaws.com
+
+Instalando docker e docker-compose no ec2
+- sudo yum update
+- sudo yum install docker
+- sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+- sudo chmod +x /usr/local/bin/docker-compose
+- sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+- sudo service docker start
+
+Configurando o usuario
+aws configure
+
+
+Eks
+Criando um cluster:  eksctl create cluster --name=dev-cluster --nodes=1 --node-type=m4.large
+Configurando kubectl:
+ - aws sts get-caller-identity
+ - aws eks --region <region-code> update-kubeconfig --name <cluster_name>
+Deletando um cluster: eksctl delete cluster nome
+
+Registry aws (ecr)
+primeiro cria a imagem
+Pegar o password: aws ecr get-login-password
+pagar id da conta ecr:  aws sts get-caller-identity --output text --query "Account"
+logar: docker login -u AWS -p [password] https://[aws-conta-id].dkr.ecr.[region].amazonaws.com
+criando repositorios:  aws ecr create-repository --repository-name fabricio211/product
+criando tags: docker tag fabricio211/product-service:versao [uri do repositorio]:versao
+envia a imagem para o registry: docker push 333000609522.dkr.ecr.us-east-2.amazonaws.com/fabricio211/product:2.0.0
+Pegando dados para modificar o security group: aws ec2 describe-security-groups --filters Name=group-name,Values="*eksctl-dev-cluster-nodegroup*" --query "SecurityGroups[*].{Name:GroupName,ID:GroupId}"
+oupName,ID:GroupId}"
+[
+    {
+        "Name": "eksctl-ostock-dev-cluster-nodegroup-ng-8483b49e-SG-1ELCNW69RW094",
+        "ID": "sg-0458998dfebe57e19"
+    }
+]
+
+Qualquer ip pode chegar na porta do service: aws ec2 authorize-security-group-ingress --protocol tcp --port 31248 --group-id sg-07bf435ec4d60a099 --cidr 0.0.0.0/0
+pegando ip externo  kubectl get nodes -o wide
+ http://<node-externo-ip>:<node-port>/products
+ http://18.220.162.124:31248/products
+
+obs: não cabe nesse projeto, mas caso preciso de um kafka dentro do kubernetes, podemos utilizar o helm
+helm install zookeeper bitnami/zookeeper --set replicaCount=1 --set auth.enabled=false --set allowAnonymousLogin=true
+helm install kafka bitnami/kafka --set zookeeper.enabled=false --set replicaCount=1 --set externalZookeeper.servers=zookeeper

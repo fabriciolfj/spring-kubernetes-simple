@@ -9,19 +9,17 @@ data:
                     application:
                       name: product
                     datasource:
-                      url: jdbc:mysql://mysql/product?createDatabaseIfNotExist=true
-                      username: root
-                      password: ${MYSQL_ROOT_PASSWORD}
+                      url: jdbc:postgresql://database-1.chqfpdlyxbi9.us-east-2.rds.amazonaws.com:5432/postgres
+                      username: postgres
+                      password: megatron12
                     flyway:
                       locations:
                         - classpath:db/migration
                         - classpath:db/testdata
                     jpa:
-                      hibernate:
-                        ddl-auto: 'update'
                       properties:
                         hibernate:
-                          dialect: org.hibernate.dialect.MySQL57Dialect
+                          dialect: org.hibernate.dialect.PostgreSQLDialect
                       show-sql: true
                     management:
                     endpoints:

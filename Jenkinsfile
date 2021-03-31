@@ -25,7 +25,7 @@ node {
     }
 
     stage("SSH Into k8s Server") {
-        withKubeConfig([credentialsId: 'user1', serverUrl: 'https://localhost:49156']) {
+        withKubeConfig([serverUrl: 'https://localhost:49156']) {
           ssh  "kubectl apply -f ./ -R"
         }
     }

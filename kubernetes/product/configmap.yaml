@@ -23,7 +23,7 @@ data:
                         hibernate:
                           dialect: org.hibernate.dialect.MySQL57Dialect
                       show-sql: true
-                    management:
+                  management:
                     endpoints:
                       web:
                         exposure:
@@ -34,6 +34,7 @@ data:
                           enabled: true
                     endpoint:
                       metrics:
-                        enabled: false
+                        enabled: true
                       prometheus:
                         enabled: true
+

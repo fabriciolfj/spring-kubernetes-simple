@@ -33,10 +33,11 @@ services:
   prometheus:
     networks:
       - my-network
-    image: prom/prometheus
+    image: prom/prometheus:v2.24.1
     container_name: prometheus
     volumes:
       - ./env/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./env/alert.rules.yaml:/etc/prometheus/alerts.rules
     ports:
       - 9090:9090
   grafana:

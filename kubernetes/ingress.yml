@@ -1,15 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: product-service
-  annotations:
-    kubernetes.io/ingress.allow-http: "false"
+  name: product-ingress
 spec:
   rules:
     - host: api.estudo.kubernetes # Mude para o seu endereço
       http:
         paths:
-          - path: /
-            backend:
-              serviceName: products
-              servicePort: 8080
+        - backend:
+            serviceName: products
+            servicePort: 8080

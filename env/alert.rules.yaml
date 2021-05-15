@@ -1,0 +1,11 @@
+groups:
+  - name: spring
+    rules:
+      - alert: springjava
+        expr: http_server_requests_seconds_max{exception="None",method="GET",outcome="SUCCESS",status="200",uri="/products",} > 0.2
+        for: 5s
+        label:
+          team: infra
+        annotations:
+          titulo: "Muito lento"
+          descricao: "0 {{ $label.instance }} está muito lento"

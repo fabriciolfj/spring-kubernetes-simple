@@ -11,7 +11,7 @@ pipeline {
         stage("Build project") {
             steps {
                 script {
-                    'mvnw clean install'
+                    sh 'mvnw clean install'
                 }
             }
         }
@@ -31,6 +31,24 @@ pipeline {
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
                     }
+                }
+            }
+        }
+
+        stage('Deploy kubernetes') {
+            agent {
+                kubernetes {
+                    cloud 'kubernetes-prod'
+                }
+            }
+            environment {
+                tag_version = "${env.BUILD_ID}"
+            }
+            steps {
+                script {
+                    sh 'sed -i "s/{{tag}}/$tag_version" ./kubernetes/product/product.yml'
+                    sh 'cat ./kubernetes/product/produt.yml'
+                    kubernetesDeploy(configs: '**/kubernetes/**', kubeconfigId: 'kube2')
                 }
             }
         }

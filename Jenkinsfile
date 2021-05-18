@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     dockerapp = docker.build("fabricio211/product-service:${env.BUILD_ID}",
-                    ' -f ./Dockerfile .')
+                    ' -f .')
                 }
             }
         }

@@ -19,7 +19,7 @@ node {
         stage("Build image") {
             steps {
                 script {
-                    dockerapp = docker.build()"fabricio211/product-service:${env.BUILD_ID}",
+                    dockerapp = docker.build("fabricio211/product-service:${env.BUILD_ID}",
                     ' -f ./Dockerfile .')
                 }
             }

@@ -11,7 +11,7 @@ pipeline {
         stage("Build project") {
             steps {
                 script {
-                    .\mvnw clean install
+                    mvnw clean install
                 }
             }
         }

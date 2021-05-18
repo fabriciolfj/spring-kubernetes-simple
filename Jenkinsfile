@@ -1,28 +1,39 @@
 node {
+    agent any
 
-    stage("Git Clone"){
+    stages {
+        stage("Git clone") {
+            steps {
+                git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple', branch: 'jenkins-windows'
+            }
+        }
 
-        git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple', branch: 'jenkins-windows'
-    }
+        stage("Build project") {
+            steps {
+                script {
+                    "mvn clean package"
+                }
+            }
+        }
 
-    stage('Maven Build') {
-       "mvnw clean install"
-    }
+        stage("Build image") {
+            steps {
+                script {
+                    dockerapp = docker.build()"fabricio211/product-service:${env.BUILD_ID}",
+                    ' -f ./Dockerfile .')
+                }
+            }
+        }
 
-    stage("Docker build"){
-        "docker version"
-        "docker build -t fabricio211/product-service:3.0.0 ."
-    }
-
-    stage("Docker Login"){
-        "docker login -u fabricio211 -p megatron12"
-    }
-
-    stage("Push Image to Docker Hub"){
-        "docker push  fabricio211/product-service:3.0.0"
-    }
-
-    stage("kubernetes") {
-        "kubectl apply -f ./ -R"
+        stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        dockerapp.push('latest')
+                        dockerapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
+        }
     }
 }

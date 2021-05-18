@@ -2,12 +2,12 @@ node {
 
     stage("Git Clone"){
 
-        git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple', branch: 'jenkins'
+        git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple', branch: 'jenkins-windows'
     }
 
     stage('Maven Build') {
 
-       sh "mvn clean install -DskipTests"
+       bat "mvn clean install -DskipTests"
 
     }
 

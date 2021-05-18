@@ -10,16 +10,16 @@ node {
     }
 
     stage("Docker build"){
-        'docker version'
-        'docker build -t fabricio211/product-service:3.0.0 .'
+        "docker version"
+        "docker build -t fabricio211/product-service:3.0.0 ."
     }
 
     stage("Docker Login"){
-        'docker login -u fabricio211 -p megatron12'
+        "docker login -u fabricio211 -p megatron12"
     }
 
     stage("Push Image to Docker Hub"){
-        'docker push  fabricio211/product-service:3.0.0'
+        "docker push  fabricio211/product-service:3.0.0"
     }
 
     stage("kubernetes") {

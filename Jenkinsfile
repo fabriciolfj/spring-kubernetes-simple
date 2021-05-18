@@ -7,7 +7,7 @@ node {
 
     stage('Maven Build') {
 
-       sh "./mvnw clean install -DskipTests"
+       sh ".\mvnw clean install -DskipTests"
 
     }
 

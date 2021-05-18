@@ -15,25 +15,5 @@ node {
                 }
             }
         }
-
-        stage("Build image") {
-            steps {
-                script {
-                    dockerapp = docker.build("fabricio211/product-service:9.0.0",
-                    ' -f ./Dockerfile .')
-                }
-            }
-        }
-
-        stage("Push image") {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        dockerapp.push('latest')
-                        dockerapp.push("9.0.0")
-                    }
-                }
-            }
-        }
     }
 }

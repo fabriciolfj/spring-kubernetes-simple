@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     sh 'sed -i "s/{{tag}}/$tag_version" ./kubernetes/product/product.yml'
-                    sh 'cat ./kubernetes/product/produt.yml'
+                    sh 'cat ./kubernetes/product/product.yml'
                     kubernetesDeploy(configs: '**/kubernetes/**', kubeconfigId: 'kube2')
                 }
             }

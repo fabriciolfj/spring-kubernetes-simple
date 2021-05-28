@@ -54,3 +54,10 @@ siege http://10.238.177.98:31298/products -i -v -r 1000 -c 150 --no-parser
 
 ### Jenkins acesso ao docker:
 - sudo usermod -aG docker jenkins
+
+### Istio
+- Instalar no path do seu so.
+```
+istioctl install
+kubectl label namespace [seu namespace] istio-injection=enabled
+```

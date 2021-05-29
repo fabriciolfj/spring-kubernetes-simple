@@ -61,3 +61,4 @@ siege http://10.238.177.98:31298/products -i -v -r 1000 -c 150 --no-parser
 istioctl install
 kubectl label namespace [seu namespace] istio-injection=enabled
 ```
+- obs: caso os pods já estejam criados, delete e recrie-os.

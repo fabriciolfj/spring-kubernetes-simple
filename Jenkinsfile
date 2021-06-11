@@ -37,7 +37,9 @@ agent any
 
        stage('Kubernetes deploy') {
             steps {
+            script {
            kubernetesDeploy configs: 'configserver-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+           }
            }
         }
 }

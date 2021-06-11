@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.project.ks8</groupId>
 	<artifactId>product</artifactId>
-	<version>9.0.0</version>
+	<version>9.0.1</version>
 	<name>simple-example</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -116,34 +116,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>docker.io/fabricio211/${project.artifactId}:${version}</name>
+						<name>fabricio211/${project.artifactId}:${project.version}</name>
 					</image>
 					<layers>
 						<enabled>true</enabled>
 					</layers>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>1.4.13</version>
-				<configuration>
-					<repository>${docker.image.prefix}/${project.artifactId}</repository>
-					<tag>${project.version}</tag>
-					<buildArgs>
-						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-					</buildArgs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>default</id>
-						<phase>install</phase>
-						<goals>
-							<goal>build</goal>
-							<goal>push</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

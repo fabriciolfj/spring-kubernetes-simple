@@ -15,7 +15,7 @@ node {
       }
    }
     stage('Build image') {
-        sh "'${mvnHome}/bin/mvn' -Ddocker.image.prefix=fabricio211 -Dproject.artifactId=product -Ddocker.image.version=9.0.1 dockerfile:build"
+        sh "'${mvnHome}/bin/mvn' spring-boot:build-image"
     }
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {

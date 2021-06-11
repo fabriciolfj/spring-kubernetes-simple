@@ -1,6 +1,5 @@
 pipeline {
-
-agent any
+    agent any
 
     stages {
         stage("Git clone") {
@@ -20,7 +19,7 @@ agent any
         stage("Build image") {
             steps {
                 script {
-                    dockerapp = docker.build("fabricio211/product:9.0.1")
+                    dockerapp = docker.build("fabricio211/product-service:9.0.1")
                 }
             }
         }
@@ -35,11 +34,12 @@ agent any
             }
         }
 
-       stage('Kubernetes deploy') {
+        stage('Kubernetes deploy') {
             steps {
-            script {
-           kubernetesDeploy configs: 'configserver-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-           }
-           }
+                script {
+                   kubernetesDeploy configs: 'configserver-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+                }
+            }
         }
+    }
 }

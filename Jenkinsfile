@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("Git clone") {
             steps {
-                git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple.git', branch: 'jenkins-v2'
+                git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple.git', branch: 'master'
             }
         }
 

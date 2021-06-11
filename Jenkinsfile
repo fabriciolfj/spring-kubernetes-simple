@@ -1,7 +1,7 @@
 node {
    def mvnHome
       stage('Preparation') { // for display purposes
-         git 'https://github.com/fabriciolfj/spring-kubernetes-simple.git'
+      git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple.git', branch: 'jenkins-v2'
          mvnHome = tool 'M2_HOME'
       }
    stage('Build') {

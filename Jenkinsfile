@@ -3,6 +3,11 @@ node {
       stage('Preparation') { // for display purposes
          mvnHome = tool 'M2_HOME'
       }
+            stage("Git clone") {
+                  steps {
+                      git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple.git', branch: 'jenkins-v2'
+                  }
+              }
    stage('Build') {
       // Run the maven build
       withEnv(["M2_HOME=$mvnHome"]) {

@@ -20,12 +20,12 @@ node {
         stage("Push image") {
             script {
                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                    sh "docker push docker.io/fabricio211/product:9.0.1"
+                    sh "docker push registry.hub.docker.com/fabricio211/product:9.0.1"
                 }
             }
         }
    stage('Kubernetes deploy') {
-       kubernetesDeploy configs: 'configserver-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+       kubernetesDeploy configs: 'deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
     }
 
 }

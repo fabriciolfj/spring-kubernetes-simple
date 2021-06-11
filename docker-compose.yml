@@ -1,0 +1,53 @@
+version: '2.1'
+
+services:
+  app:
+    networks:
+      - my-network
+    image: fabricio211/product-service:7.1
+    ports:
+    - 8080:8080
+    volumes:
+    - .:/code
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    networks:
+      - my-network
+    image: mysql:5.7.21
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_DATABASE: "product"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uuser", "-ppwd", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "3306:3306"
+
+  prometheus:
+    networks:
+      - my-network
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./env/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+  grafana:
+    networks:
+      - my-network
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    env_file:
+      - ./env/grafana.env
+networks:
+  my-network:
+    name: my-network

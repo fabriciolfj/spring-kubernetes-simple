@@ -1,10 +1,6 @@
 spring:
   application:
     name: product
-  datasource:
-    url: jdbc:mysql://localhost:3306/product
-    username: root
-    password: root
   flyway:
     locations:
       - classpath:db/migration
@@ -12,7 +8,18 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL57Dialect
     show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true

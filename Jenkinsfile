@@ -20,7 +20,7 @@ node {
         stage("Push image") {
             script {
                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                    sh "docker push fabricio211/product:9.0.1"
+                    sh "docker push docker.io/fabricio211/product:9.0.1"
                 }
             }
         }

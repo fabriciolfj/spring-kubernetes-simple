@@ -16,7 +16,7 @@ node {
    }
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
-      archiveArtifacts 'configserver/target/*.jar'
+      archiveArtifacts 'product/target/*.jar'
    }
     stage('Build image') {
         sh "'${mvnHome}/bin/mvn' -Ddocker.image.prefix=fabricio211 -Dproject.artifactId=product -Ddocker.image.version=9.0.1 dockerfile:build"

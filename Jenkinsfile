@@ -31,6 +31,7 @@ node {
                 dockerapp.push("${env.BUILD_ID}")
             }
         }
+     }
    }
 
    stage('Kubernetes deploy') {

@@ -35,11 +35,6 @@ pipeline {
         }
 
         stage('Deploy kubernetes') {
-            agent {
-                kubernetes {
-                    cloud 'kubernetes'
-                }
-            }
             steps {
                 script {
                     kubernetesDeploy(configs: '**/k8s/**', kubeconfigId: 'kubeconfig')

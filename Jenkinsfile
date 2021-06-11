@@ -1,4 +1,4 @@
-node {
+pipeline {
    def mvnHome
       stage('Preparation') { // for display purposes
       git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple.git', branch: 'jenkins-v2'

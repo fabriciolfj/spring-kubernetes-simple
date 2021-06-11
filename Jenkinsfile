@@ -1,5 +1,8 @@
 node {
    def mvnHome
+      stage('Preparation') { // for display purposes
+         mvnHome = tool 'M2_HOME'
+      }
    stage('Build') {
       // Run the maven build
       withEnv(["M2_HOME=$mvnHome"]) {

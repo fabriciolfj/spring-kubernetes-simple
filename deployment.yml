@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: products
-          image: 333000609522.dkr.ecr.us-east-1.amazonaws.com/fabricio211/product:9.0.1
+          image: fabricio211/product:9.0.1
           imagePullPolicy: Always
           env:
             - name: SPRING_CONFIG_LOCATION

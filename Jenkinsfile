@@ -17,11 +17,15 @@ node {
     stage('Build image') {
         sh "'${mvnHome}/bin/mvn' spring-boot:build-image"
     }
-    stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            sh "docker push fabricio211/product:9.0.1"
+        stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        dockerapp.push('9.0.1')
+                    }
+                }
+            }
         }
-    }
    stage('Kubernetes deploy') {
        kubernetesDeploy configs: 'configserver-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
     }

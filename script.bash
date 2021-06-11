@@ -13,7 +13,7 @@ kubectl create secret generic mysql-server-credentials \
     --from-literal=MYSQL_DATABASE=product \
     --save-config;
 
-#kubectl create configmap config-repo-product --from-file=config-repo/product.yml --save-config
+#kubectl create configmap config-repo-product --from-file=config-repo/deployment.yml --save-config
 kubectl apply -f kubernetes/mysql.yaml
 
 #docker build -t fabricio211/product-service .

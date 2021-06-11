@@ -17,7 +17,7 @@ aws configure
 
 
 Eks
-Criando um cluster:  eksctl create cluster --name=dev-cluster --nodes=1 --node-type=m4.large
+Criando um cluster:  eksctl create cluster --name=registr--nodes=1 --node-type=m4.large
 Configurando kubectl:
  - aws sts get-caller-identity
  - aws eks --region <region-code> update-kubeconfig --name <cluster_name>

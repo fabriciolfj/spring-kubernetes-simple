@@ -26,7 +26,7 @@ node {
             }
         }
    stage('Kubernetes deploy') {
-       kubernetesDeploy configs: 'deployment.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'http://']
+       sh 'kubectl apply -f deplyment.yml'
     }
 
 }

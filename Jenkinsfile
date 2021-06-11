@@ -35,14 +35,6 @@ pipeline {
         }
 
         stage('Deploy kubernetes') {
-            agent {
-                kubernetes {
-                    cloud 'kubernetes'
-                }
-            }
-            environment {
-                tag_version = "${env.BUILD_ID}"
-            }
             steps {
                 script {
                     sh 'kubectl apply -f deployment.yml'

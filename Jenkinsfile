@@ -1,5 +1,6 @@
 pipeline {
    def mvnHome
+   stages {
       stage('Preparation') { // for display purposes
       git url: 'https://github.com/fabriciolfj/spring-kubernetes-simple.git', branch: 'jenkins-v2'
          mvnHome = tool 'M2_HOME'
@@ -37,5 +38,5 @@ pipeline {
    stage('Kubernetes deploy') {
        kubernetesDeploy configs: 'configserver-deployment.yaml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
     }
-
+    }
 }

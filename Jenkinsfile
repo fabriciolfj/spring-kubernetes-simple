@@ -1,4 +1,5 @@
 node {
+
     stages {
         stage("Git clone") {
             steps {
@@ -36,4 +37,5 @@ node {
        kubernetesDeploy configs: 'deployment.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
     }
 
+}
 }

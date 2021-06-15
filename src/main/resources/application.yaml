@@ -23,3 +23,5 @@ management:
       enabled: false
     prometheus:
       enabled: true
+
+app.key: test

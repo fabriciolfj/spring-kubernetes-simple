@@ -4,6 +4,11 @@ metadata:
   name: products
 spec:
   replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
   selector:
     matchLabels:
       app: products
@@ -14,7 +19,7 @@ spec:
     spec:
       containers:
         - name: products
-          image: fabricio211/product:1.57.0
+          image: fabricio211/product:1.58.0
           imagePullPolicy: Always
           env:
             - name: SPRING_CONFIG_LOCATION

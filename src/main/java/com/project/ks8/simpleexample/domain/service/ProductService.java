@@ -19,6 +19,7 @@ public class ProductService {
 
     public List<Product> findAll() {
         log.info("Realizando pesquisa de todos os produtos.");
+        delay();
         return repository.findAll();
     }
 
@@ -44,5 +45,13 @@ public class ProductService {
 
     public Product create(final Product product) {
         return repository.save(product);
+    }
+
+    private void delay() {
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

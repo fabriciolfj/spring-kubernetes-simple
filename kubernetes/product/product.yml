@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: products
 spec:
-  replicas: 1
+  replicas: 4
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 50%
+      maxUnavailable: 50%
   selector:
     matchLabels:
       app: products
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: products
-          image: fabricio211/product:1.58.0
+          image: fabricio211/product:1.57.0
           imagePullPolicy: Always
           env:
             - name: SPRING_CONFIG_LOCATION
@@ -69,7 +69,7 @@ kind: Service
 metadata:
   name: products
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8080

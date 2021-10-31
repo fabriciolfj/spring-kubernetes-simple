@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: build-app-run
+spec:
+  taskRef:
+    name: product
+  resources:
+    inputs:
+      - name: source
+        resourceRef:
+          name: git-source
+    outputs:
+      - name: builtImage
+        resourceRef:
+          name: fabricio211/product:1.58.0

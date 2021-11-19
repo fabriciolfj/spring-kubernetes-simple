@@ -5,33 +5,35 @@ metadata:
   name: config-product
 data:
   application.yml: |-
-                  spring:
-                    application:
-                      name: product
-                    datasource:
-                      url: jdbc:h2:mem:testdb
-                      username: sa
-                      password: password
-                    flyway:
-                      locations:
-                        - classpath:db/migration
-                        - classpath:db/testdata
-                    jpa:
-                      properties:
+                    spring:
+                      application:
+                        name: product
+                      datasource:
+                        url: jdbc:h2:mem:testdb
+                        username: sa
+                        password: password
+                      flyway:
+                        locations:
+                          - classpath:db/migration
+                          - classpath:db/testdata
+                      jpa:
                         hibernate:
-                          dialect: org.hibernate.dialect.H2Dialect
-                      show-sql: true
+                          ddl-auto: none
+                        properties:
+                          hibernate:
+                            dialect: org.hibernate.dialect.H2Dialect
+                        show-sql: true
                     management:
-                    endpoints:
-                      web:
-                        exposure:
-                          include: "*"
-                    metrics:
-                      export:
+                      endpoints:
+                        web:
+                          exposure:
+                            include: "*"
+                      metrics:
+                        export:
+                          prometheus:
+                            enabled: true
+                      endpoint:
+                        metrics:
+                          enabled: true
                         prometheus:
                           enabled: true
-                    endpoint:
-                      metrics:
-                        enabled: true
-                      prometheus:
-                        enabled: true

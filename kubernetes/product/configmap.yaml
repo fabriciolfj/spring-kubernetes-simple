@@ -32,6 +32,6 @@ data:
                           enabled: true
                     endpoint:
                       metrics:
-                        enabled: false
+                        enabled: true
                       prometheus:
                         enabled: true
